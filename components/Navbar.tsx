@@ -4,9 +4,9 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -84,7 +84,7 @@ export default function Navbar() {
             >
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
             </button>
-            <a href="#contact" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13 }}>
+            <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13 }}>
               Get a Demo
             </a>
           </div>
@@ -113,7 +113,7 @@ export default function Navbar() {
             </a>
           ))}
           <div style={{ display: "flex", gap: 12, marginTop: 24 }}>
-            <a href="#contact" className="btn-primary" onClick={() => setOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
+            <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" className="btn-primary" onClick={() => setOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
               Get a Demo
             </a>
             <button onClick={toggleTheme} style={{ background: "none", border: "1px solid var(--border)", borderRadius: 8, color: "var(--muted)", cursor: "pointer", padding: "12px 16px", display: "flex", alignItems: "center" }}>

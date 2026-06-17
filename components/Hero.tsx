@@ -32,7 +32,7 @@ export default function Hero() {
         </p>
 
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <a href="#contact" className="btn-primary">
+          <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" target="_blank" rel="noopener noreferrer" className="btn-primary">
             Get a Demo <ArrowRight size={15} />
           </a>
           <a href="#work" className="btn-ghost">

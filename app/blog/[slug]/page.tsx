@@ -39,8 +39,9 @@ function getPost(slug: string) {
   return parseFrontmatter(raw);
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) return {};
   const { meta } = post;
   const title = `${meta.title} — The Aha Company`;
@@ -54,7 +55,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       type: "article",
       publishedTime: meta.date,
       authors: [meta.author],
-      url: `https://theaha.co/blog/${params.slug}`,
+      url: `https://theaha.co/blog/${slug}`,
       siteName: "The Aha Company",
     },
     twitter: {
@@ -63,13 +64,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description,
     },
     alternates: {
-      canonical: `https://theaha.co/blog/${params.slug}`,
+      canonical: `https://theaha.co/blog/${slug}`,
     },
   };
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) notFound();
   const { meta, body } = post;
   const html = mdToHtml(body);
@@ -86,7 +88,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       name: "The Aha Company",
       url: "https://theaha.co",
     },
-    url: `https://theaha.co/blog/${params.slug}`,
+    url: `https://theaha.co/blog/${slug}`,
   };
 
   return (

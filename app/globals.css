@@ -7,9 +7,9 @@
   --subtle: rgba(244,244,245,0.15);
   --border: rgba(244,244,245,0.08);
   --blue: #1A3B60;
-  --accent: #47A019;
+  --accent: #1A3B60;
   --green: #47A019;
-  --blue-dim: rgba(71,160,25,0.12);
+  --blue-dim: rgba(26,59,96,0.15);
   --grid-line: rgba(244,244,245,0.03);
   --card-bg: rgba(244,244,245,0.02);
   --testimonial-bg: rgba(244,244,245,0.015);
@@ -109,6 +109,3 @@ body {
 
 .hover-color { transition: color 0.15s; }
 .hover-color:hover { color: var(--fg) !important; }
-
-/* Footer logo: white SVG by default (dark mode), invert to black in light mode */
-html[data-theme="light"] .footer-logo { filter: invert(1); }

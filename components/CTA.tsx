@@ -16,7 +16,7 @@ export default function CTA() {
         </p>
 
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="mailto:hello@theaha.co" className="btn-primary">
+          <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" target="_blank" rel="noopener noreferrer" className="btn-primary">
             Get a Demo <ArrowRight size={14} />
           </a>
           <a href="https://github.com/theahacompany" target="_blank" rel="noopener noreferrer" className="btn-ghost">

@@ -1,11 +1,12 @@
-import Link from "next/link";
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const links = {
   Company: [
-    { label: "Services", href: "#services" },
-    { label: "Case Studies", href: "#work" },
-    { label: "About", href: "#about" },
+    { label: "Services", href: "/#services" },
+    { label: "Case Studies", href: "/#work" },
+    { label: "About", href: "/#about" },
     { label: "Blog", href: "/blog" },
   ],
   Contact: [
@@ -22,6 +23,16 @@ const links = {
 type LinkItem = { label: string; href: string; external?: boolean };
 
 export default function Footer() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const update = () => setTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <footer style={{ borderTop: "1px solid var(--border)", padding: "80px 32px 40px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -30,12 +41,11 @@ export default function Footer() {
           <div>
             <a href="/" style={{ display: "inline-block", marginBottom: 16 }}>
               <Image
-                src="/images/logo-white.svg"
+                src={theme === "light" ? "/images/logo-black.svg" : "/images/logo-white.svg"}
                 alt="The Aha Company"
                 width={140}
                 height={24}
-                style={{ objectFit: "contain", objectPosition: "left", filter: "var(--logo-filter, none)" }}
-                className="footer-logo"
+                style={{ objectFit: "contain", objectPosition: "left" }}
               />
             </a>
             <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.65, maxWidth: 200 }}>
