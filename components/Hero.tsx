@@ -143,25 +143,9 @@ export default function Hero() {
 
 
               {/* Nodes */}
-              {NODES.map((n, i) => {
-                const op = nodeOp(n.cx, n.cy);
-                const close = distC(n.cx, n.cy) < 85;
-                return (
-                  <g key={n.id}>
-                    {close && (
-                      <circle cx={n.cx} cy={n.cy} r={n.r + 5} fill="none" stroke="var(--accent)" strokeWidth="1">
-                        <animate attributeName="r" values={`${n.r+3};${n.r+11};${n.r+3}`} dur={`${3+i*0.3}s`} repeatCount="indefinite" />
-                        <animate attributeName="stroke-opacity" values={`${op*0.2};0;${op*0.2}`} dur={`${3+i*0.3}s`} repeatCount="indefinite" />
-                      </circle>
-                    )}
-                    <circle cx={n.cx} cy={n.cy} r={n.r} fill="var(--accent)" opacity={op}>
-                      {close && (
-                        <animate attributeName="r" values={`${n.r};${n.r*1.12};${n.r}`} dur={`${4+i*0.25}s`} begin={`${i*0.15}s`} repeatCount="indefinite" />
-                      )}
-                    </circle>
-                  </g>
-                );
-              })}
+              {NODES.map((n) => (
+                <circle key={n.id} cx={n.cx} cy={n.cy} r={n.r} fill="var(--accent)" opacity={nodeOp(n.cx, n.cy)} />
+              ))}
             </svg>
           </motion.div>
 
