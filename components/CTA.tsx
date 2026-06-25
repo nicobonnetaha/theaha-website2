@@ -1,72 +1,88 @@
 "use client";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export default function CTA() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" ref={ref} style={{ padding: "140px 32px", borderTop: "1px solid var(--border)", background: "var(--blue-dim)", overflow: "hidden", position: "relative" }}>
+    <section
+      id="contact"
+      ref={ref}
+      style={{
+        padding: "160px 32px",
+        position: "relative",
+        overflow: "hidden",
+        borderTop: "1px solid var(--border)",
+      }}
+    >
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse 800px 500px at 50% 100%, rgba(var(--accent-rgb), 0.11) 0%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
 
-      {/* Floating illustration top-right */}
-      <motion.div
-        initial={{ opacity: 0, x: 60, y: -20 }}
-        animate={inView ? { opacity: 0.18, x: 0, y: 0 } : {}}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        style={{ position: "absolute", right: -40, top: "50%", transform: "translateY(-50%)", width: 340, pointerEvents: "none" }}
-      >
-        <motion.div animate={{ y: [0, -12, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
-          <Image src="/images/DevXisinourDNA.png" alt="" width={340} height={340} style={{ width: "100%", height: "auto" }} />
-        </motion.div>
-      </motion.div>
+      <div style={{
+        maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative",
+        opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(32px)",
+        transition: "opacity 0.7s ease, transform 0.7s ease",
+      }}>
+        <p style={{
+          fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase",
+          color: "rgba(var(--fg-rgb), 0.28)", marginBottom: 32,
+        }}>
+          Let&apos;s build together
+        </p>
 
-      <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative" }}>
+        <h2 style={{
+          fontSize: "clamp(2.8rem, 7vw, 6.5rem)",
+          letterSpacing: "-0.04em", lineHeight: 1.0, marginBottom: 40,
+        }}>
+          <span style={{
+            display: "block",
+            fontFamily: "var(--font-spectral), Georgia, serif",
+            fontWeight: 400, fontStyle: "italic",
+            color: "var(--fg)",
+          }}>
+            Ready to build
+          </span>
+          <span style={{
+            display: "block",
+            fontFamily: "var(--font-space), sans-serif",
+            fontWeight: 900,
+            color: "var(--accent)",
+          }}>
+            something that lasts?
+          </span>
+        </h2>
 
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="tag"
-          style={{ marginBottom: 24, display: "block", justifyContent: "center" }}
-        >
-          Get started
-        </motion.span>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: 900, letterSpacing: "-0.04em", color: "var(--fg)", lineHeight: 1.05, marginBottom: 24 }}
-        >
-          <span style={{ fontFamily: "var(--font-spectral), Georgia, serif" }}>Ready to build</span><br />
-          something lasting?
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          style={{ fontSize: 16, color: "var(--muted)", lineHeight: 1.75, maxWidth: 480, margin: "0 auto 48px" }}
-        >
+        <p style={{
+          fontSize: 17, color: "rgba(var(--fg-rgb), 0.38)", lineHeight: 1.75,
+          maxWidth: 480, margin: "0 auto 56px",
+        }}>
           Let&apos;s talk about your blockchain project. We&apos;ll find the right approach and ship fast.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.3 }}
-          style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}
-        >
-          <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" target="_blank" rel="noopener noreferrer" className="btn-primary">
-            Get a Demo <ArrowRight size={14} />
+        <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+          <a
+            href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Get a Demo <ArrowRight size={15} />
           </a>
-          <a href="https://github.com/theahacompany" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+          <a
+            href="https://github.com/theahacompany"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
             View GitHub
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

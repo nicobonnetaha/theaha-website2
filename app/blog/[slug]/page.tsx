@@ -3,6 +3,7 @@ import { join } from "path";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ArticleCTA from "@/components/ArticleCTA";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -121,6 +122,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </header>
 
           <div dangerouslySetInnerHTML={{ __html: html }} />
+          <ArticleCTA />
 
         </div>
       </main>

@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import LargeServiceCards from "@/components/LargeServiceCards";
+import LogoTicker from "@/components/LogoTicker";
+import Stats from "@/components/Stats";
 import About from "@/components/About";
+import WhatWeDo from "@/components/WhatWeDo";
 import Testimonials from "@/components/Testimonials";
 import WhyUs from "@/components/WhyUs";
-import WorkAndBlog from "@/components/WorkAndBlog";
+import Cases from "@/components/Cases";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -15,12 +16,13 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Services />
-        <LargeServiceCards />
+        <LogoTicker />
+        <Stats />
+        <WhatWeDo />
+        <WhyUs />
+        <Cases />
         <About />
         <Testimonials />
-        <WhyUs />
-        <WorkAndBlog />
         <CTA />
       </main>
       <Footer />

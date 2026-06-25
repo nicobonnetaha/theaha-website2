@@ -1,131 +1,128 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import Image from "next/image";
-
-const links = [
-  { label: "Services", href: "/#services" },
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Blog", href: "/blog" },
-];
+import { ArrowRight, Sun, Moon } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [light, setLight] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
-    const initial = saved ?? "light";
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
+    const stored = localStorage.getItem("aha-theme");
+    if (stored === "light") setLight(true);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
-  function toggleTheme() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  }
-
-  const navBg = scrolled
-    ? theme === "dark" ? "rgba(6,6,8,0.90)" : "rgba(248,248,246,0.92)"
-    : "transparent";
+  const toggleTheme = () => {
+    const next = !light;
+    setLight(next);
+    if (next) {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("aha-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem("aha-theme", "dark");
+    }
+  };
 
   return (
-    <>
-      <header style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+    <header
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        padding: "0 32px",
+        transition: "background 0.3s, border-color 0.3s",
+        background: scrolled ? "rgba(var(--bg-rgb), 0.88)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
-        background: navBg,
-        transition: "all 0.3s",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+      }}
+    >
+      <div style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        height: 72,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <span style={{ fontSize: 18, fontWeight: 800, color: "var(--fg)", letterSpacing: "-0.03em" }}>
+            The Aha Company
+          </span>
+        </a>
 
-          <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <Image
-              src={theme === "dark" ? "/images/logo-white.svg" : "/images/logo-black.svg"}
-              alt="The Aha Company"
-              height={28}
-              width={160}
-              style={{ objectFit: "contain", objectPosition: "left" }}
-              priority
-            />
-          </a>
-
-          <nav style={{ display: "flex", alignItems: "center", gap: 36 }} className="hidden-mobile">
-            {links.map((l) => (
-              <a key={l.href} href={l.href}
-                style={{ fontSize: 13, fontWeight: 500, color: "var(--muted)", textDecoration: "none", transition: "color 0.15s" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
-
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="hidden-mobile">
-            <button
-              onClick={toggleTheme}
-              style={{ background: "none", border: "1px solid var(--border)", borderRadius: 8, color: "var(--muted)", cursor: "pointer", padding: "8px 10px", display: "flex", alignItems: "center", transition: "border-color 0.15s, color 0.15s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = "var(--fg)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--subtle)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = "var(--muted)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border)"; }}
-              aria-label="Toggle theme"
+        <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
+          {["Services", "Work", "About", "Blog"].map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              style={{ fontSize: 14, fontWeight: 500, color: "var(--muted)", textDecoration: "none", transition: "color 0.15s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
             >
-              {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
-            <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13 }}>
-              Get a Demo
-            </a>
-          </div>
-
-          <button
-            className="show-mobile"
-            onClick={() => setOpen(!open)}
-            style={{ background: "none", border: "none", color: "var(--muted)", cursor: "pointer", padding: 4 }}
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </header>
-
-      {open && (
-        <div style={{
-          position: "fixed", inset: 0, zIndex: 40, background: "var(--bg)",
-          paddingTop: 80, paddingLeft: 32, paddingRight: 32, display: "flex", flexDirection: "column", gap: 8
-        }}>
-          {links.map((l) => (
-            <a key={l.href} href={l.href}
-              onClick={() => setOpen(false)}
-              style={{ fontSize: 24, fontWeight: 700, color: "var(--fg)", textDecoration: "none", padding: "12px 0", borderBottom: "1px solid var(--border)" }}
-            >
-              {l.label}
+              {link}
             </a>
           ))}
-          <div style={{ display: "flex", gap: 12, marginTop: 24 }}>
-            <a href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min" className="btn-primary" onClick={() => setOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
-              Get a Demo
-            </a>
-            <button onClick={toggleTheme} style={{ background: "none", border: "1px solid var(--border)", borderRadius: 8, color: "var(--muted)", cursor: "pointer", padding: "12px 16px", display: "flex", alignItems: "center" }}>
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-          </div>
-        </div>
-      )}
 
-      <style>{`
-        @media (min-width: 768px) { .hidden-mobile { display: flex !important; align-items: center; } .show-mobile { display: none !important; } }
-        @media (max-width: 767px) { .hidden-mobile { display: none !important; } .show-mobile { display: block !important; } }
-      `}</style>
-    </>
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{
+              background: "none",
+              border: "1px solid var(--border)",
+              borderRadius: 8,
+              width: 36,
+              height: 36,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              color: "var(--muted)",
+              transition: "border-color 0.15s, color 0.15s",
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "var(--subtle)";
+              e.currentTarget.style.color = "var(--fg)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.color = "var(--muted)";
+            }}
+          >
+            {light ? <Moon size={15} /> : <Sun size={15} />}
+          </button>
+
+          <a
+            href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 7,
+              background: "var(--accent)",
+              color: "#fff",
+              fontSize: 13,
+              fontWeight: 600,
+              padding: "9px 18px",
+              borderRadius: 7,
+              textDecoration: "none",
+              transition: "opacity 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            Schedule a call <ArrowRight size={13} />
+          </a>
+        </nav>
+      </div>
+    </header>
   );
 }

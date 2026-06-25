@@ -1,0 +1,49 @@
+---
+title: "Equitx"
+excerpt: "Equity tokenization infrastructure built on Stellar, bringing real-world asset issuance on-chain with compliance at the protocol layer."
+date: "2024"
+category: "Tokenization · Stellar"
+client: "Equitx"
+tags: ["RWA", "Tokenization", "Compliance", "Stellar"]
+---
+
+## Overview
+
+Equitx is a real-world asset tokenization platform built on Stellar, designed to bring equity issuance, transfer, and management on-chain for private companies and investment vehicles.
+
+We designed and built the core blockchain infrastructure — from the asset issuance contracts to the compliance layer and investor onboarding flows.
+
+## The problem
+
+Private equity has historically been a paper-heavy, slow, and geographically constrained market. Cap table management, share transfers, and secondary liquidity all rely on manual processes and intermediaries.
+
+Equitx set out to change that — but doing it right meant building compliance into the protocol layer, not bolting it on as an afterthought.
+
+## What we built
+
+### Tokenized equity issuance
+
+We built a Stellar-based asset issuance system that represents equity stakes as on-chain tokens with full regulatory controls. Each token carries authorization flags, clawback rights, and configurable transfer restrictions — all native to the Stellar protocol.
+
+### Compliance at the protocol layer
+
+Rather than relying on off-chain compliance checks, we embedded KYC/AML verification directly into the trustline authorization flow. Investors can only hold and transfer tokens after passing identity verification, enforced by the smart contract logic.
+
+### Cap table management
+
+We built a real-time cap table that reflects the on-chain state of all token holders, their positions, and transaction history. This gives issuers a single source of truth for equity ownership, always in sync with the blockchain.
+
+### Secondary market infrastructure
+
+Equitx includes a matching engine for secondary transfers between verified investors, with all transactions settled on-chain through Stellar's built-in DEX primitives.
+
+## Technical architecture
+
+The system runs on Soroban smart contracts for business logic, with Stellar's native asset primitives handling the token mechanics. A Node.js backend handles KYC provider integrations and off-chain data, while a React frontend provides the issuer dashboard and investor portal.
+
+## Results
+
+- First equity tokenization platform to leverage Soroban's authorization primitives for compliance
+- Sub-second settlement on all secondary transfers
+- Full regulatory audit trail for every on-chain action
+- Scalable to thousands of investors per issuance
