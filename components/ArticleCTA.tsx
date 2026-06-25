@@ -26,7 +26,7 @@ export default function ArticleCTA() {
         Ready to build something that lasts?
       </h2>
       <p style={{ fontSize: 15, color: "var(--muted)", lineHeight: 1.7, marginBottom: 32, maxWidth: 440, margin: "0 auto 32px" }}>
-        Tell us about your project — we&apos;ll get back to you within 24 hours.
+        Tell us about your project, we&apos;ll get back to you within 24 hours.
       </p>
       <a
         href="https://calendly.com/d/crt8-mrr-zy9/chat-with-aha-labs-30min"

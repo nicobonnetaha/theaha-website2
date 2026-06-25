@@ -13,7 +13,7 @@ const services = [
   {
     num: "02",
     title: "Tokenized Assets",
-    desc: "Bring real-world assets on-chain — funds, securities, commodities. We handle the smart contracts, custody integration, and regulatory wrapper.",
+    desc: "Bring real-world assets on-chain, funds, securities, commodities. We handle the smart contracts, custody integration, and regulatory wrapper.",
     tag: "DeFi",
   },
   {
@@ -31,13 +31,13 @@ const services = [
   {
     num: "05",
     title: "Cross-Chain Bridges",
-    desc: "Interoperability solutions for moving value across Stellar, XRPL, Cosmos, and EVM chains — production-grade, audited, and battle-tested.",
+    desc: "Interoperability solutions for moving value across Stellar, XRPL, Cosmos, and EVM chains, production-grade, audited, and battle-tested.",
     tag: "Multi-chain",
   },
   {
     num: "06",
     title: "Compliance Layer",
-    desc: "KYC/AML integrations, on-chain monitoring, and regulatory reporting built into your blockchain stack — not bolted on after.",
+    desc: "KYC/AML integrations, on-chain monitoring, and regulatory reporting built into your blockchain stack, not bolted on after.",
     tag: "Compliance",
   },
 ];

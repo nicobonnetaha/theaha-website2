@@ -16,7 +16,7 @@ const posts = [
   {
     category: "Developer Tools",
     title: "Scaffold Stellar: How We Built the Developer Toolkit for the Next Wave of dApps",
-    excerpt: "A deep dive into Scaffold Stellar — the open-source framework we built to make it easier for developers to ship production-ready apps on Stellar.",
+    excerpt: "A deep dive into Scaffold Stellar, the open-source framework we built to make it easier for developers to ship production-ready apps on Stellar.",
     date: "Oct 20, 2025",
     readTime: "8 min",
     author: "Willem Wyndham",
@@ -46,7 +46,7 @@ export default function BlogPage() {
               Insights from the field
             </h1>
             <p style={{ fontSize: 16, color: "var(--muted)", lineHeight: 1.7 }}>
-              Blockchain, DeFi, tokenization — written by the people building it.
+              Blockchain, DeFi, tokenization, written by the people building it.
             </p>
           </div>
 

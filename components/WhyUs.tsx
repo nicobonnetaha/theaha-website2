@@ -6,22 +6,22 @@ const items = [
   {
     num: "01",
     title: "We're Core Contributors",
-    desc: "We don't just build on Stellar — we help build Stellar itself. As core contributors, we've shipped protocol updates, SDKs, and the developer tooling the ecosystem runs on.",
+    desc: "We don't just build on Stellar, we help build Stellar itself. As core contributors, we've shipped protocol updates, SDKs, and the developer tooling the ecosystem runs on.",
   },
   {
     num: "02",
     title: "DevX is in our DNA",
-    desc: "We've built developer tools used by thousands of blockchain developers worldwide. Great developer experience isn't a nice-to-have — it's the foundation everything else is built on.",
+    desc: "We've built developer tools used by thousands of blockchain developers worldwide. Great developer experience isn't a nice-to-have, it's the foundation everything else is built on.",
   },
   {
     num: "03",
     title: "Multi-Chain, No Bias",
-    desc: "We work across Stellar, XRPL, Ethereum, and Cosmos. We recommend what's right for your use case — not what happens to be our comfort zone.",
+    desc: "We work across Stellar, XRPL, Ethereum, and Cosmos. We recommend what's right for your use case, not what happens to be our comfort zone.",
   },
   {
     num: "04",
     title: "Artisan Mindset",
-    desc: "We sweat the details others skip. From API ergonomics to audit trails, from documentation to deployment — we build things we'd be proud to use ourselves.",
+    desc: "We sweat the details others skip. From API ergonomics to audit trails, from documentation to deployment, we build things we'd be proud to use ourselves.",
   },
 ];
 

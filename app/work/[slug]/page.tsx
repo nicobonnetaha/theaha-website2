@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const item = getCase(slug);
   if (!item) return {};
   const { meta } = item;
-  const title = `${meta.title} — The Aha Company`;
+  const title = `${meta.title}, The Aha Company`;
   return {
     title,
     description: meta.excerpt,

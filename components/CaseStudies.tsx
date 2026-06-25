@@ -15,7 +15,7 @@ const cases = [
     num: "02",
     category: "Tokenization · XRPL",
     title: "RWA Tokenization Platform",
-    desc: "End-to-end real-world asset tokenization infrastructure with compliance at its core — from smart contract to investor dashboard.",
+    desc: "End-to-end real-world asset tokenization infrastructure with compliance at its core, from smart contract to investor dashboard.",
     year: "2024",
   },
   {

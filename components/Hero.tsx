@@ -88,7 +88,7 @@ export default function Hero() {
             margin: "0 auto 44px",
           }}
         >
-          We design and deploy compliant blockchain infrastructure for financial institutions — from stablecoin rails to tokenized funds.
+          We design and deploy compliant blockchain infrastructure for financial institutions, from stablecoin rails to tokenized funds.
         </motion.p>
 
         <motion.div

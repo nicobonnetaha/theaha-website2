@@ -16,8 +16,8 @@ const spectral = Spectral({
 });
 
 export const metadata: Metadata = {
-  title: "The Aha Company — Blockchain Solutions Built to Last",
-  description: "The Aha Company bridges institutions and startups with blockchain. Developer tooling, tokenization, and DeFi — compliance-ready solutions across Stellar, XRPL, Ethereum & Cosmos.",
+  title: "The Aha Company, Blockchain Solutions Built to Last",
+  description: "The Aha Company bridges institutions and startups with blockchain. Developer tooling, tokenization, and DeFi, compliance-ready solutions across Stellar, XRPL, Ethereum & Cosmos.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

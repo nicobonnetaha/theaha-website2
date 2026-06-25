@@ -12,7 +12,7 @@ const services = [
   {
     num: "02",
     title: "RWA Tokenization",
-    desc: "Bring real-world assets on-chain — funds, securities, commodities. Smart contracts, custody integration, and regulatory wrapper included.",
+    desc: "Bring real-world assets on-chain, funds, securities, commodities. Smart contracts, custody integration, and regulatory wrapper included.",
     tag: "DeFi",
   },
   {
@@ -30,13 +30,13 @@ const services = [
   {
     num: "05",
     title: "Compliance Layer",
-    desc: "KYC/AML integrations, on-chain monitoring, and regulatory reporting built into your blockchain stack — not bolted on after the fact.",
+    desc: "KYC/AML integrations, on-chain monitoring, and regulatory reporting built into your blockchain stack, not bolted on after the fact.",
     tag: "Compliance",
   },
   {
     num: "06",
     title: "Cross-Chain Bridges",
-    desc: "Interoperability solutions for moving value across Stellar, XRPL, Cosmos, and EVM chains — production-grade, audited, and battle-tested.",
+    desc: "Interoperability solutions for moving value across Stellar, XRPL, Cosmos, and EVM chains, production-grade, audited, and battle-tested.",
     tag: "Multi-chain",
   },
 ];

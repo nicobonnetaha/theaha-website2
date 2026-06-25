@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
-  { q: "What chains do you build on?", a: "We specialize in Stellar, XRPL, Ethereum, and Cosmos. Each chain has unique strengths — we help you pick the right one and build the best solution on top of it." },
+  { q: "What chains do you build on?", a: "We specialize in Stellar, XRPL, Ethereum, and Cosmos. Each chain has unique strengths, we help you pick the right one and build the best solution on top of it." },
   { q: "Do you work with institutions?", a: "Yes. Many of our clients are financial institutions, asset managers, or regulated entities. We understand compliance requirements and build with them in mind from day one." },
   { q: "What is Scaffold Stellar?", a: "Scaffold Stellar is our open-source developer framework for building production-ready apps on Stellar. CLI tooling, project templates, smart contract scaffolding, and more." },
-  { q: "Can you help with tokenization?", a: "Absolutely. We've built end-to-end tokenization infrastructure for real-world assets — from the smart contract layer to the frontend and compliance workflows." },
+  { q: "Can you help with tokenization?", a: "Absolutely. We've built end-to-end tokenization infrastructure for real-world assets, from the smart contract layer to the frontend and compliance workflows." },
   { q: "How do we get started?", a: "Book a demo call with our team. We'll discuss your use case, recommend the right approach, and put together a proposal tailored to your goals." },
 ];
 
