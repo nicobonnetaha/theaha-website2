@@ -28,8 +28,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           (function() {
             try {
               var t = localStorage.getItem('aha-theme');
-              if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
-            } catch(e) {}
+              if (t !== 'dark') document.documentElement.setAttribute('data-theme', 'light');
+            } catch(e) {
+              document.documentElement.setAttribute('data-theme', 'light');
+            }
           })();
         `}} />
       </head>
