@@ -77,6 +77,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const { meta, body } = post;
   const html = mdToHtml(body);
 
+  const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://theaha-website2.vercel.app";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -84,20 +86,24 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     description: meta.excerpt || meta.title,
     datePublished: meta.date,
     author: { "@type": "Person", name: meta.author },
-    publisher: {
-      "@type": "Organization",
-      name: "The Aha Company",
-      url: "https://theaha.co",
-    },
-    url: `/blog/${slug}`,
+    publisher: { "@type": "Organization", name: "The Aha Company", url: BASE },
+    url: `${BASE}/blog/${slug}`,
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
+      { "@type": "ListItem", position: 3, name: meta.title, item: `${BASE}/blog/${slug}` },
+    ],
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <Navbar />
       <main style={{ minHeight: "100vh", paddingTop: 120, paddingBottom: 120, paddingLeft: 32, paddingRight: 32 }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>

@@ -1,15 +1,15 @@
 "use client";
 
 const logos = [
-  { src: "/images/partners/1.png", alt: "Partner 1" },
-  { src: "/images/partners/2.png", alt: "Partner 2" },
-  { src: "/images/partners/3.png", alt: "Partner 3" },
-  { src: "/images/partners/4.png", alt: "Partner 4" },
-  { src: "/images/partners/5.png", alt: "Partner 5" },
-  { src: "/images/partners/6.png", alt: "Partner 6" },
-  { src: "/images/partners/7.png", alt: "Partner 7" },
-  { src: "/images/partners/8.png", alt: "Partner 8" },
-  { src: "/images/partners/9.png", alt: "Partner 9" },
+  { src: "/images/partners/1.png", alt: "Stellar Development Foundation" },
+  { src: "/images/partners/2.png", alt: "Société Générale FORGE" },
+  { src: "/images/partners/3.png", alt: "Filecoin" },
+  { src: "/images/partners/4.png", alt: "NEAR Protocol" },
+  { src: "/images/partners/5.png", alt: "Cardano" },
+  { src: "/images/partners/6.png", alt: "XRPL" },
+  { src: "/images/partners/7.png", alt: "Ethereum" },
+  { src: "/images/partners/8.png", alt: "Cosmos" },
+  { src: "/images/partners/9.png", alt: "LI.FI" },
 ];
 
 // Filter applied via CSS (see <style> block) to handle dark/light mode

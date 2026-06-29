@@ -73,8 +73,21 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     ? meta.tags.replace(/^\[|\]$/g, "").split(",").map((t) => t.trim().replace(/^"|"$/g, ""))
     : [];
 
+  const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://theaha-website2.vercel.app";
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${BASE}/#work` },
+      { "@type": "ListItem", position: 3, name: meta.title, item: `${BASE}/work/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <Navbar />
       <main style={{ minHeight: "100vh", paddingTop: 120, paddingBottom: 120, paddingLeft: 32, paddingRight: 32 }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>
