@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -15,6 +16,16 @@ function parseFrontmatter(content: string) {
   });
   return meta;
 }
+
+export const metadata: Metadata = {
+  title: "Blog, The Aha Company",
+  description: "Insights on blockchain architecture, tokenization, RWA, DeFi, and smart contract engineering from the team at The Aha Company.",
+  openGraph: {
+    title: "Blog, The Aha Company",
+    description: "Insights on blockchain architecture, tokenization, RWA, DeFi, and smart contract engineering.",
+    type: "website",
+  },
+};
 
 function formatDate(date: string) {
   const d = new Date(date);

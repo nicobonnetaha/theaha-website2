@@ -55,7 +55,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description: meta.excerpt,
-    openGraph: { title, description: meta.excerpt, type: "website", siteName: "The Aha Company" },
+    openGraph: { title, description: meta.excerpt, type: "website", siteName: "The Aha Company", url: `/work/${slug}` },
+    twitter: { card: "summary_large_image", title, description: meta.excerpt },
+    alternates: { canonical: `/work/${slug}` },
   };
 }
 

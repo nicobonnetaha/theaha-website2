@@ -15,9 +15,25 @@ const spectral = Spectral({
   variable: "--font-spectral",
 });
 
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://theaha-website2.vercel.app";
+
 export const metadata: Metadata = {
-  title: "The Aha Company, Blockchain Solutions Built to Last",
+  title: {
+    default: "The Aha Company, Blockchain Solutions Built to Last",
+    template: "%s, The Aha Company",
+  },
   description: "The Aha Company bridges institutions and startups with blockchain. Developer tooling, tokenization, and DeFi, compliance-ready solutions across Stellar, XRPL, Ethereum & Cosmos.",
+  metadataBase: new URL(BASE),
+  openGraph: {
+    siteName: "The Aha Company",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@theahaco",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

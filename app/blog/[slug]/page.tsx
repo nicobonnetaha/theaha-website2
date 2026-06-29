@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       publishedTime: meta.date,
       authors: [meta.author],
-      url: `https://theaha.co/blog/${slug}`,
+      url: `/blog/${slug}`,
       siteName: "The Aha Company",
     },
     twitter: {
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description,
     },
     alternates: {
-      canonical: `https://theaha.co/blog/${slug}`,
+      canonical: `/blog/${slug}`,
     },
   };
 }
@@ -89,7 +89,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       name: "The Aha Company",
       url: "https://theaha.co",
     },
-    url: `https://theaha.co/blog/${slug}`,
+    url: `/blog/${slug}`,
   };
 
   return (
