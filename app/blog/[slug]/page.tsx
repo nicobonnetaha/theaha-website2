@@ -132,6 +132,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 }
 
 export async function generateStaticParams() {
-  const slugs = ["stellar-tokenization-2025", "scaffold-stellar-developer-toolkit", "defi-xrpl-compliance-liquidity"];
-  return slugs.map((slug) => ({ slug }));
+  const { readdirSync } = await import("fs");
+  const { join } = await import("path");
+  const dir = join(process.cwd(), "content/blog");
+  const files = readdirSync(dir).filter((f) => f.endsWith(".mdx") || f.endsWith(".md"));
+  return files.map((f) => ({ slug: f.replace(/\.mdx?$/, "") }));
 }

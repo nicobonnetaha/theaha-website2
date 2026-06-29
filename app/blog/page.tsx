@@ -1,39 +1,43 @@
+import { readdirSync, readFileSync } from "fs";
+import { join } from "path";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-const posts = [
-  {
-    category: "Tokenization",
-    title: "Why Stellar is the Right Chain for Tokenization in 2025",
-    excerpt: "From RWA to stablecoins, Stellar's compliance-first architecture makes it the go-to chain for institutional tokenization. Here's why we keep building on it.",
-    date: "Sep 15, 2025",
-    readTime: "6 min",
-    author: "Chad Barraford",
-    slug: "stellar-tokenization-2025",
-  },
-  {
-    category: "Developer Tools",
-    title: "Scaffold Stellar: How We Built the Developer Toolkit for the Next Wave of dApps",
-    excerpt: "A deep dive into Scaffold Stellar, the open-source framework we built to make it easier for developers to ship production-ready apps on Stellar.",
-    date: "Oct 20, 2025",
-    readTime: "8 min",
-    author: "Willem Wyndham",
-    slug: "scaffold-stellar-developer-toolkit",
-  },
-  {
-    category: "DeFi",
-    title: "DeFi on XRPL: Compliance, Liquidity and the Road Ahead",
-    excerpt: "XRPL's native DEX and AMM features make it uniquely positioned for compliant DeFi. We explore the opportunities and challenges for builders.",
-    date: "Nov 10, 2025",
-    readTime: "5 min",
-    author: "Chad Barraford",
-    slug: "defi-xrpl-compliance-liquidity",
-  },
-];
+function parseFrontmatter(content: string) {
+  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return {} as Record<string, string>;
+  const meta: Record<string, string> = {};
+  match[1].split("\n").forEach((line) => {
+    const [key, ...val] = line.split(": ");
+    if (key) meta[key.trim()] = val.join(": ").trim().replace(/^"|"$/g, "");
+  });
+  return meta;
+}
+
+function formatDate(date: string) {
+  const d = new Date(date);
+  if (isNaN(d.getTime())) return date;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function getAllPosts() {
+  const dir = join(process.cwd(), "content/blog");
+  const files = readdirSync(dir).filter((f) => f.endsWith(".mdx") || f.endsWith(".md"));
+  return files
+    .map((file) => {
+      const slug = file.replace(/\.mdx?$/, "");
+      const raw = readFileSync(join(dir, file), "utf-8");
+      const meta = parseFrontmatter(raw);
+      return { slug, ...meta };
+    })
+    .sort((a, b) => (a.date > b.date ? -1 : 1));
+}
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <>
       <Navbar />
@@ -70,7 +74,7 @@ export default function BlogPage() {
                       <span style={{ fontSize: 11, fontWeight: 700, color: "var(--accent)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                         {p.category}
                       </span>
-                      <span style={{ fontSize: 11, color: "var(--subtle)" }}>{p.date} · {p.readTime} read</span>
+                      <span style={{ fontSize: 11, color: "var(--subtle)" }}>{formatDate(p.date)}{p.readTime ? ` · ${p.readTime}` : ""}</span>
                     </div>
                     <h2 style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", fontWeight: 800, color: "var(--fg)", lineHeight: 1.3, letterSpacing: "-0.025em", marginBottom: 10 }}>
                       {p.title}
@@ -78,7 +82,7 @@ export default function BlogPage() {
                     <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.7, marginBottom: 10, maxWidth: 620 }}>
                       {p.excerpt}
                     </p>
-                    <span style={{ fontSize: 12, color: "var(--subtle)" }}>By {p.author}</span>
+                    {p.author && <span style={{ fontSize: 12, color: "var(--subtle)" }}>By {p.author}</span>}
                   </div>
                   <ArrowUpRight size={18} style={{ color: "var(--muted)", flexShrink: 0 }} />
                 </article>
