@@ -22,7 +22,9 @@ function formatDate(date: string) {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-function getAllPosts() {
+type Post = { slug: string; title: string; category: string; excerpt: string; date: string; readTime?: string; author?: string };
+
+function getAllPosts(): Post[] {
   const dir = join(process.cwd(), "content/blog");
   const files = readdirSync(dir).filter((f) => f.endsWith(".mdx") || f.endsWith(".md"));
   return files
@@ -30,7 +32,7 @@ function getAllPosts() {
       const slug = file.replace(/\.mdx?$/, "");
       const raw = readFileSync(join(dir, file), "utf-8");
       const meta = parseFrontmatter(raw);
-      return { slug, ...meta };
+      return { slug, title: meta.title ?? "", category: meta.category ?? "", excerpt: meta.excerpt ?? "", date: meta.date ?? "", readTime: meta.readTime, author: meta.author };
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 }
